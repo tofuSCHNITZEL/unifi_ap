@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unifi_ap"
+version = "0.0.1"
+authors = [
+  { name="Tobias Perschon", email="tobias@perschon.at" },
+]
+description = "Python API for UniFi accesspoints"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "paramiko==3.3.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/tofuSCHNITZEL/unifi_ap"
+Issues = "https://github.com/tofuSCHNITZEL/unifi_ap/issues"
+
+[tool.pylint.main]
+ignore-patterns = ["^\\.#"]
+
+py-version = "3.11"
+
+[tool.pylint.basic]
+no-docstring-rgx = "^_"
+
+[tool.pylint."messages control"]
+disable = ["too-many-arguments", "too-many-instance-attributes", "raw-checker-failed", "bad-inline-option", "locally-disabled", "file-ignored", "suppressed-message", "useless-suppression", "deprecated-pragma", "use-symbolic-message-instead", "use-implicit-booleaness-not-comparison-to-string", "use-implicit-booleaness-not-comparison-to-zero"]
+
+[tool.pylint.variables]
+ignored-argument-names = "_.*|^ignored_|^unused_"
