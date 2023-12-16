@@ -12,7 +12,7 @@ currently this package can only be used by importing it into own python files
 
 ```
 import unifi_ap
-ap = UniFiAP("10.0.0.253", "admin")
+ap = unifi_ap.UniFiAP("10.0.0.253", "admin")
 clients = ap.get_clients()
 ssids = ap.get_ssids()
 clients_for_ssid = ap.get_clients(for_ssids=["guest"])
