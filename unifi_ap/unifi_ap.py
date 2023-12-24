@@ -1,7 +1,7 @@
 """Communicate with an UniFi accesspoint"""
 import json
 import paramiko
-
+from typing import Any
 
 class UniFiAPConnectionException(Exception):
     """Exception indicating problems with the connection to the accespoint"""
@@ -24,8 +24,8 @@ class UniFiAP:
         self,
         target: str,
         username: str,
-        password: str = None,
-        key_file: str = None,
+        password: str | None = None,
+        key_file: str | None = None,
         port: int = 22,
         timeout: int = 30,
     ) -> None:
@@ -67,7 +67,7 @@ class UniFiAP:
     def get_ssids(self) -> set | None:
         """Returns all SSIDs from the accesspoint"""
         ap_data = self._fetch_ap_data()
-        ssids = set()
+        ssids: set[str] = set()
         if self.unifi_ssid_array not in ap_data:
             return None
         for vap in ap_data[self.unifi_ssid_array]:
@@ -75,10 +75,10 @@ class UniFiAP:
 
         return ssids
 
-    def get_clients(self, for_ssids: list = None) -> dict | None:
+    def get_clients(self, for_ssids: list | None = None) -> dict | None:
         """Returns all clients from the accesspoint connected to any or certain SSIDs"""
         ap_data = self._fetch_ap_data()
-        clients = {}
+        clients: dict[str, dict[str, Any]] = {}
 
         if self.unifi_ssid_array not in ap_data:
             return None
